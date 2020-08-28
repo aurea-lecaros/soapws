@@ -9,6 +9,11 @@ import javax.annotation.PostConstruct
 
 @Component
 class CountryRepository {
+
+    companion object {
+        private val countries: MutableMap<String, Country> = HashMap()
+    }
+
     @PostConstruct
     fun initData() {
         val spain = Country()
@@ -34,9 +39,5 @@ class CountryRepository {
     fun findCountry(name: String): Country? {
         Assert.notNull(name, "The country's name must not be null")
         return countries[name]
-    }
-
-    companion object {
-        private val countries: MutableMap<String, Country> = HashMap()
     }
 }
